@@ -1,0 +1,354 @@
+/*
+  Estilos base inspirados en Windows 95. Se usan colores gris claro,
+  azules y biselados para recrear el aspecto clásico. El diseño es
+  minimalista y sutil para no saturar la interfaz.
+*/
+
+/* Reseteo simple para evitar márgenes y paddings no deseados */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #008080; /* color de fondo global (teal) típico de Win95 */
+  font-family: "Tahoma", "MS Sans Serif", Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+/* Ventana principal */
+.window {
+  width: 90%;
+  max-width: 1000px;
+  margin: 30px auto;
+  border: 2px solid #000;
+  background-color: #c0c0c0;
+  box-shadow: inset -1px -1px #404040, inset 1px 1px #ffffff;
+}
+
+/* Barra de título */
+.title-bar {
+  height: 28px;
+  background: linear-gradient(to right, #000080, #0000a0);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  font-weight: bold;
+}
+
+.title-bar-text {
+  user-select: none;
+}
+
+/* Contenedor de contenido */
+.content {
+  display: flex;
+  height: 500px;
+}
+
+/* Barra lateral para módulos */
+.sidebar {
+  width: 200px;
+  border-right: 2px solid #000;
+  box-shadow: inset -1px -1px #404040, inset 1px 1px #ffffff;
+  background-color: #c0c0c0;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 6px 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.sidebar li:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+.sidebar li.active {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* Área principal */
+.main {
+  flex-grow: 1;
+  padding: 10px;
+  border-left: 2px solid #ffffff;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+  background-color: #c0c0c0;
+  overflow-y: auto;
+}
+
+/* Encabezado del módulo (título y botones) */
+.module-header {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.module-header h2 {
+  font-size: 16px;
+  margin-right: auto;
+}
+
+.module-header .btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.btn {
+  background-color: #c0c0c0;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.btn:active {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #404040;
+}
+
+/* Lista de menús y submenús */
+.menu-container {
+  padding-left: 0;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  padding: 2px 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu-item:hover {
+  background-color: #808080;
+  color: #ffffff;
+}
+
+.menu-item .toggle-icon {
+  width: 12px;
+  display: inline-block;
+}
+
+.menu-item .label {
+  display: inline-block;
+}
+
+.menu-item.expanded > .submenu {
+  display: block;
+}
+
+.submenu {
+  list-style: none;
+  margin-left: 15px;
+  display: none;
+}
+
+/* Elemento final (opción sin submenú) */
+.final-item {
+  padding: 2px 4px 2px 20px;
+  cursor: pointer;
+}
+
+.final-item:hover {
+  background-color: #808080;
+  color: #ffffff;
+}
+
+/* Modal de creación de grupos */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-window {
+  width: 400px;
+  max-height: 80vh;
+  background-color: #c0c0c0;
+  border: 2px solid #000;
+  box-shadow: inset -1px -1px #404040, inset 1px 1px #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title-bar {
+  background: linear-gradient(to right, #000080, #0000a0);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-close {
+  background: #c0c0c0;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+  width: 24px;
+  height: 20px;
+  cursor: pointer;
+  color: #000;
+  line-height: 16px;
+}
+
+.modal-close:active {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #404040;
+}
+
+.modal-body {
+  padding: 8px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.modal-input {
+  width: 100%;
+  margin: 4px 0 8px;
+  padding: 2px;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+  background-color: #ffffff;
+}
+
+.modal-scroll {
+  max-height: 40vh;
+  overflow-y: auto;
+  padding: 4px;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+  background-color: #ffffff;
+}
+
+.modal-footer {
+  padding: 6px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* Menú contextual para grupos personalizados */
+.context-menu {
+  position: absolute;
+  background-color: #c0c0c0;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+  z-index: 1000;
+  min-width: 140px;
+}
+
+.context-option {
+  padding: 4px 8px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #808080;
+}
+
+.context-option:last-child {
+  border-bottom: none;
+}
+
+.context-option:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* Formularios dentro del modal */
+#group-form fieldset {
+  border: 1px solid #808080;
+  margin-bottom: 6px;
+  padding: 4px;
+}
+
+#group-form legend {
+  font-weight: bold;
+  padding: 0 4px;
+}
+
+#group-form label {
+  display: block;
+  cursor: pointer;
+  padding: 2px;
+}
+
+#group-form input[type="checkbox"] {
+  margin-right: 4px;
+}
+
+/* Oculta cualquier elemento con atributo hidden. Esto se aplica al
+   modal de creación de grupos para que no se muestre hasta que se
+   elimine el atributo. Usamos !important para asegurarnos de que
+   sobreescribe cualquier display declarado anteriormente. */
+[hidden] {
+  display: none !important;
+}
+
+/* =========================
+   RESPONSIVE – pantallas grandes
+   ========================= */
+
+/* 1280px: un poco más de ancho y sidebar más cómoda */
+@media (min-width: 1280px) {
+  .window { max-width: 1200px; }
+  .sidebar { width: 240px; }
+  .main { padding: 12px; }
+  .module-header h2 { font-size: 18px; }
+  .menu-item, .final-item { padding: 4px 6px; }
+  /* más área útil sin romper el look */
+  .content { height: 560px; }
+  .modal-window { width: 440px; }
+  .modal-scroll { max-height: 48vh; }
+}
+
+/* 1440px: ancho “desktop” cómodo */
+@media (min-width: 1440px) {
+  .window { max-width: 1360px; }
+  .sidebar { width: 260px; }
+  .content { height: 640px; }
+  .modal-window { width: 480px; }
+  .modal-scroll { max-height: 52vh; }
+}
+
+/* 1680px: monitores grandes */
+@media (min-width: 1680px) {
+  .window { max-width: 1480px; }
+  .sidebar { width: 280px; }
+  .content { height: 700px; }
+  .modal-window { width: 500px; }
+  .modal-scroll { max-height: 56vh; }
+}
+
+/* 1920px: full HD / ultrawide básico */
+@media (min-width: 1920px) {
+  .window { max-width: 1680px; }
+  .sidebar { width: 300px; }
+  .content { height: 760px; }
+  .modal-window { width: 520px; }
+  .modal-scroll { max-height: 60vh; }
+}

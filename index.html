@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consola de Gestión</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!--
+      Esta interfaz implementa una consola de gestión modular con estilo
+      inspirado en Windows 95. Los módulos principales aparecen en la
+      barra lateral izquierda. Al seleccionar un módulo se carga la
+      jerarquía de menús y submenús en el área principal. El usuario
+      puede crear grupos personalizados que agrupan opciones finales de
+      distintos módulos; los grupos aparecen en el módulo “Mis Grupos”
+      y pueden verse desde cualquier módulo activando el filtro de
+      “Mostrar grupos”.
+    -->
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Consola de Gestión</div>
+        </div>
+        <div class="content">
+            <!-- Barra de módulos -->
+            <aside class="sidebar">
+                <ul id="module-list"></ul>
+            </aside>
+            <!-- Área principal -->
+            <main class="main">
+                <div id="module-header" class="module-header"></div>
+                <div id="menu-container" class="menu-container"></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal para crear grupos -->
+    <div id="group-modal" class="modal-overlay" hidden>
+        <div class="modal-window">
+            <div class="modal-title-bar">
+                <span class="modal-title">Crear grupo personalizado</span>
+                <button id="modal-close" class="modal-close">X</button>
+            </div>
+            <div class="modal-body">
+                <label for="group-name">Nombre del grupo:</label>
+                <input type="text" id="group-name" class="modal-input" />
+                <div class="modal-scroll">
+                    <!-- Aquí se generarán dinámicamente los campos de selección -->
+                    <form id="group-form"></form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-save" class="btn">Guardar</button>
+                <button id="modal-cancel" class="btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Menú contextual para grupos personalizados -->
+    <div id="group-context-menu" class="context-menu" hidden>
+        <div class="context-option" data-action="edit">Editar grupo</div>
+        <div class="context-option" data-action="delete">Eliminar grupo</div>
+    </div>
+</body>
+</html>
